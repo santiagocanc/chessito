@@ -95,11 +95,11 @@ class Chess():
         m = []
         if not self.board_state[pos1[0]+s][pos1[1]]:
             m.append((pos1[0]+s,pos1[1]))
-        if np.sign(self.board_state[pos1[0]+s][pos1[1]+s])!=np.sign(s):
+        if np.sign(self.board_state[pos1[0]+s][pos1[1]+s])!=np.sign(s) and self.board_state[pos1[0]+s][pos1[1]+s]!=0:
             m.append((pos1[0]+s,pos1[1]+s))
-        if np.sign(self.board_state[pos1[0]+s][pos1[1]-s])!=np.sign(s):
+        if np.sign(self.board_state[pos1[0]+s][pos1[1]-s])!=np.sign(s) and self.board_state[pos1[0]+s][pos1[1]+s]!=0:
             m.append((pos1[0]+s,pos1[1]-s))
-    
+        print("MMMM",m)
         return m
         
     def checkBishop(self,pos1,s):
@@ -247,31 +247,6 @@ class Chess():
      
 
    
-        """  def game_human(self):
-        
-        #A human vs human game
-        winner = False
-        turns = [self.p1,self.p2]
-        x=0
-        current = turns[x]
-        players = ["PLAYER 1", "PLAYER 2"]
-        while not winner:
-            print(self.board_state)
-            #valid = 0
-            while True:
-               
-                pos1 = eval(input("From where")) #Yes eval is insecure
-                pos2 = eval(input("To where"))
-                if self.move(current, pos1, pos2 ):
-                    break
-
-                   
-            if 1 in self.p1.pieces or -1 in self.p2.pieces:
-                winner = 1
-               
-            x+=1
-            current = turns[x%2]"""
-
     def play_moves(self, moves):
         winner = False
         turns = [self.p1,self.p2]

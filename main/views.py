@@ -106,7 +106,8 @@ def play(request): #cambiar get por post
 
                 
 
-                gamesess.moves = json.dumps(prevmovs)
+                gamesess.moves = json.dumps(prevmovs+[(pos1,pos2)])
+                gamesess.save()
                 print(board)
             else:
                 p2 = main.ChessGame.Player(s=-1)
