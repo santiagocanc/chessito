@@ -57,7 +57,8 @@ def game(request):
             gamesess = GameSession(player1 = request.user, player2= None, name = request.POST.get("name","My Game!"), isPrivate = request.POST.get("isPrivate",False)=="on" )
             gamesess.save()
         elif request.POST.get("join",None):
-            gamesess = GameSession.objects.get(gameid=request.GET.get("id"))
+        
+            gamesess = GameSession.objects.get(gameid=request.POST.get("id"))
             if gamesess:
                 gamesess.player2 = request.user
                 gamesess.save()

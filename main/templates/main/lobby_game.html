@@ -29,6 +29,19 @@
               <a href="{% url 'main-game' %}?id={{ game.gameid }}" class="link-success">{{ game.gameid }}</a>
                 <div> Creator: {{ game.player1 }}</div> 
                 <div> Name: {{ game.name }}</div> 
+
+
+                <form method="post" action="{% url 'main-game' %}">
+                  {% csrf_token %}
+                <div>
+                  <input type="hidden" id="join" name="join" value="true">
+                  <input type="hidden" id="id" name="id" value={{game.gameid}}>
+                  
+                  <input id = "buttonjoin" type="submit" value = "Join!">
+              
+                  </div>
+              
+                </form>
             
           
           </div>
