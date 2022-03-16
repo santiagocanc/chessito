@@ -1,0 +1,37 @@
+{% extends "main/base.html" %}
+{% block content %}
+
+<article class="media content-section">
+  <div class="media-body">
+    <div>
+      <form method="post" action="{% url 'main-game' %}">
+        {% csrf_token %}
+      <div>
+        <input type="hidden" id="create" name="create" value="true">
+        <input type="text" id = "name" name="name" required size="10">
+        <input type="checkbox" id = "isPrivate" name="isPrivate" checked="True">
+        <label for="isPrivate">isPrivate</label><br>
+        <input id = "buttonsend" type="submit" >Create!</input>
+        </div>
+    
+      </form>
+  </div>
+  </div>
+</article>
+
+    {% for game in games %}
+  
+        <article class="media content-section">
+          <div class="media-body">
+            <div>
+              
+              <a href="{% url 'main-game' %}?id={{ game.gameid }}" class="link-success">{{ game.gameid }}</a>
+                <div> Creator: {{ game.player1 }}</div> 
+                <div> Name: {{ game.name }}</div> 
+            
+          
+          </div>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

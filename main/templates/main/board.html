@@ -1,0 +1,311 @@
+{% extends "main/base.html" %}
+{% block content %}
+
+
+<!DOCTYPE html>
+
+<html>
+
+
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  
+	<head>
+		<meta charset="utf-8" />
+		<title>HTMLiveCode</title>
+		<style type="text/css">
+			
+		</style>
+		
+	</head>
+
+	<body>
+    
+<div class="ui segment">
+  <div class="ui two column very relaxed grid">
+    <div class="column">
+    <div align = "right" >
+  
+      GAME ID:  <div id="gameidgetter">{{gameid}}</div>
+      
+      </div>
+ 
+      <div>
+      <input type="text" id = "tempsend" name="name" required
+      minlength="4" maxlength="8" size="10">
+      <button type="button" id = "buttonsend" >send pro!</button>
+      </div>
+		
+      <table style="text-align:center;border-spacing:0pt;font-family:'Arial Unicode MS'; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 0pt 0pt">
+<div align="left">
+<tbody><tr>
+<td style="width:12pt">8
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 1pt 0pt 0pt 1pt"><span style="font-size:500%;" id = "00">♜</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 1pt 0pt 0pt 0pt" bgcolor="silver"><span style="font-size:500%;" id = "01">♞</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 1pt 0pt 0pt 0pt"><span style="font-size:500%;" id = "02">♝</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 1pt 0pt 0pt 0pt" bgcolor="silver"><span style="font-size:500%;" id = "03">♛</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 1pt 0pt 0pt 0pt"><span style="font-size:500%;" id = "04">♚</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 1pt 0pt 0pt 0pt" bgcolor="silver"><span style="font-size:500%;" id = "05">♝</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 1pt 0pt 0pt 0pt"><span style="font-size:500%;", id = "06">♞</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 1pt 1pt 0pt 0pt" bgcolor="silver"><span style="font-size:500%;" id = "07">♜</span>
+</td></tr>
+<tr>
+<td style="width:12pt">7
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 0pt 1pt" bgcolor="silver"><span style="font-size:500%;" id = "10">♟</span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;"  id = "11" onclick="javascript:">♟</span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;"id = "12">♟</span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "13">♟</span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "14">♟</span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "15">♟</span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "16">♟</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 1pt 0pt 0pt"><span style="font-size:500%;" id = "17">♟</span>
+</td></tr>
+<tr>
+<td style="width:12pt">6
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 0pt 1pt"><span style="font-size:500%;" id = "20"></span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "21"></span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "22"></span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "23"></span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;"id = "24"></span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "25"></span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "26"></span>
+</td>
+	<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 1pt 0pt 0pt" bgcolor="silver"><span style="font-size:500%;" id = "27"><br></span>
+</td></tr>
+<tr>
+<td style="width:12pt">5
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 0pt 1pt" bgcolor="silver"><span style="font-size:500%;" id = "30"></span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "31"></span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "32"></span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "33"></span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "34"></span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "35"></span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "36"></span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 1pt 0pt 0pt"><span style="font-size:500%;" id = "37"><br></span>
+</td></tr>
+<tr>
+<td style="width:12pt">4
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 0pt 1pt"><span style="font-size:500%;" id = "40"></span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "41"></span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "42"></span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "43"></span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "44"></span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;"id = "45"></span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "46"></span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 1pt 0pt 0pt" bgcolor="silver"><span style="font-size:500%;" id = "47"><br></span>
+</td></tr>
+<tr>
+<td style="width:12pt">3
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 0pt 1pt" bgcolor="silver"><span style="font-size:500%;" id = "50"></span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "51"></span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "52"></span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "53"></span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "54"></span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "55"></span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "56"></span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 1pt 0pt 0pt"><span style="font-size:500%;" id = "57"><br></span>
+</td></tr>
+<tr>
+<td style="width:12pt">2
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 0pt 1pt"><span style="font-size:500%;" id = "60">♙</span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "61">♙</span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "62">♙</span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "63">♙</span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "64">♙</span>
+</td>
+<td style="width:24pt; height:24pt;" bgcolor="silver"><span style="font-size:500%;" id = "65">♙</span>
+</td>
+<td style="width:24pt; height:24pt;"><span style="font-size:500%;" id = "66">♙</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 1pt 0pt 0pt" bgcolor="silver"><span style="font-size:500%;" id = "67">♙</span>
+</td></tr>
+<tr>
+<td style="width:12pt">1
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 1pt 1pt" bgcolor="silver"><span style="font-size:500%;" id = "70">♖</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 1pt 0pt"><span style="font-size:500%;" id = "71">♘</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 1pt 0pt" bgcolor="silver"><span style="font-size:500%;" id = "72">♗</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 1pt 0pt"><span style="font-size:500%;" id = "73">♕</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 1pt 0pt" bgcolor="silver"><span style="font-size:500%;" id = "74">♔</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 1pt 0pt"><span style="font-size:500%;" id = "75">♗</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 1pt 0pt" bgcolor="silver"><span style="font-size:500%;" id = "76">♘</span>
+</td>
+<td style="width:24pt; height:24pt; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 1pt 1pt 0pt"><span style="font-size:500%;" id = "77">♖</span>
+</td></tr>
+<tr>
+<td>
+</td>
+<td>a
+</td>
+<td>b
+</td>
+<td>c
+</td>
+<td>d
+</td>
+<td>e
+</td>
+<td>f
+</td>
+<td>g
+</td>
+<td>h
+</td></tr></tbody></table>
+</div>
+</div>
+   
+
+
+
+
+
+	</body>
+
+  
+    
+
+
+<script   >
+  const pieceMap = new Map()
+  
+  pieceMap.set("1","♚")
+  pieceMap.set("3","♜")
+  pieceMap.set("5","♞")
+  pieceMap.set("6","♝")
+  pieceMap.set("8","♟")
+  pieceMap.set("9","♛")
+  pieceMap.set("-1","♔")
+  pieceMap.set("-3","♖")
+  pieceMap.set("-5","♘")
+  pieceMap.set("-6","♗")
+  pieceMap.set("-8","♙")
+  pieceMap.set("-9","♕")
+  pieceMap.set("0","<br>")
+  firstPos= false
+  secondPos = false
+  for (var i = 0; i < 8; i++) {
+      for (var j = 0; j< 8; j++) {
+  var myElem = document.getElementById(i+""+j);
+    myElem.onclick = ()=>{
+      if (!firstPos){
+ 
+        firstPos = myElem.id
+        myElem.parentNode.style =  "width:24pt; height:24pt; border-collapse:collapse; border-color: green; border-style: solid; border-width: 0pt 1pt 1pt 0pt"
+
+      }
+      else{
+        get_board(firstPos, myElem.id)
+        firstPos=false
+      }
+      //do stuff
+    }
+  }
+    }
+
+
+  function draw(board){
+   
+    for (var i = 0; i < 8; i++) {
+      for (var j = 0; j< 8; j++) {
+     
+      elemento = document.getElementById(i+""+j);
+      elemento.innerHTML = pieceMap.get(board[i][j]+"")
+      
+    }
+    }
+
+    
+    
+    }
+    gameid =document.getElementById("gameidgetter").innerHTML.trim();
+    
+    function get_board(pos1,pos2){
+      alert(pos1)
+      $.ajax({
+              type: 'GET',
+              url: "{% url 'main-play' %}",
+              data: {"pos1": pos1,
+                    "pos2":pos2,
+                    "id":gameid},
+              success: function (response) {
+                  // if not valid user, alert the user
+                  draw(response["board"])
+              },
+              error: function (response) {
+                  console.log(response)
+              }
+          })}
+
+   
+  function get_board_temp(){
+    t =document.getElementById("tempsend").value
+    pos1 = t.split(" ")[0]+""
+    pos2 = t.split(" ")[1]+""
+    
+    get_board(pos1,pos2)
+  }
+  t =document.getElementById("buttonsend").onclick = ()=>{get_board_temp()};
+  
+</script>
+</html>
+{% endblock content %}
