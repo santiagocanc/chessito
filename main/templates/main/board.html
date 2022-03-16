@@ -35,7 +35,8 @@
       <div>
       <input type="text" id = "tempsend" name="name" required
       minlength="4" maxlength="8" size="10">
-      <button type="button" id = "buttonsend" >send pro!</button>
+      <button type="button" id = "buttonsend" >move!</button>
+      <button type="button" id = "buttonupdate" >update</button>
       </div>
 		
       <table style="text-align:center;border-spacing:0pt;font-family:'Arial Unicode MS'; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 0pt 0pt">
@@ -280,7 +281,7 @@
     gameid =document.getElementById("gameidgetter").innerHTML.trim();
     
     function get_board(pos1,pos2){
-      alert(pos1)
+      
       $.ajax({
               type: 'GET',
               url: "{% url 'main-play' %}",
@@ -296,6 +297,24 @@
               }
           })}
 
+
+    function get_board_latest(){
+
+      $.ajax({
+              type: 'GET',
+              url: "{% url 'main-play' %}",
+              data: {"id":gameid},
+              success: function (response) {
+                  // if not valid user, alert the user
+                  draw(response["board"])
+              },
+              error: function (response) {
+                  console.log(response)
+              }
+          })}
+
+    
+
    
   function get_board_temp(){
     t =document.getElementById("tempsend").value
@@ -304,8 +323,22 @@
     
     get_board(pos1,pos2)
   }
-  t =document.getElementById("buttonsend").onclick = ()=>{get_board_temp()};
-  get_board("11","21")
+  //t =document.getElementById("buttonsend").onclick = ()=>{get_board_temp()};
+  
+
+    $(document).ready(function()
+      {
+        $( "#buttonsend" ).click(function() {
+        get_board_temp()
+          });
+
+          $( "#buttonupdate" ).click(function() {
+        get_board_latest()
+          });
+      }
+
+    );
+ 
 </script>
 </html>
 {% endblock content %}

@@ -48,7 +48,7 @@ def game(request):
         else: #request.GET.get("join",None):
 
             games = GameSession.objects.filter(isPrivate=False).filter(isFinished=False)
-            print(games)
+           
             context = {"games": games}
             return render(request, 'main/lobby_game.html',context)
     elif request.method == "POST":
@@ -61,11 +61,10 @@ def game(request):
             if gamesess:
                 gamesess.player2 = request.user
                 gamesess.save()
-
-        context = {
+        games = GameSession.objects.filter(isPrivate=False).filter(isFinished=False)
         
-        }
-    
+        context = {"games": games}
+      
         return render(request, 'main/lobby_game.html', context)
 
 def play(request): #cambiar get por post
@@ -79,7 +78,7 @@ def play(request): #cambiar get por post
         if gamesess:
             prevmovs = json.loads(gamesess.moves)
          
-            pos1,pos2 = [int(x) for x in request.GET.get("pos1")],[int(x) for x in request.GET.get("pos2")]
+            
             current_mov =  len(prevmovs)%2 #leer json
             flag = False
 
@@ -91,9 +90,10 @@ def play(request): #cambiar get por post
             else:
                 if user == gamesess.player2:
                     flag = True
-            if flag:
-
             
+            if flag and request.GET.get("pos1") and request.GET.get("pos2"):
+
+                pos1,pos2 = [int(x) for x in request.GET.get("pos1")],[int(x) for x in request.GET.get("pos2")]
                 p2 = main.ChessGame.Player(s=-1)
                 p1 = main.ChessGame.Player()
 
@@ -101,14 +101,20 @@ def play(request): #cambiar get por post
                 
                 board = shogi.play_moves(prevmovs+[(pos1,pos2)])
                 if board is True:
+                    gamesess.moves = json.dumps(prevmovs+[(pos1,pos2)])
                     gamesess.isFinished = True
                     gamesess.save()
-
+                    
+                    return JsonResponse({"board":shogi.board_state.tolist()})
+                
+                elif board is False:
+                    board = shogi.play_moves(prevmovs)
+                else:
                 
 
-                gamesess.moves = json.dumps(prevmovs+[(pos1,pos2)])
-                gamesess.save()
-                print(board)
+                    gamesess.moves = json.dumps(prevmovs+[(pos1,pos2)])
+                    gamesess.save()
+                    print(board)
             else:
                 p2 = main.ChessGame.Player(s=-1)
                 p1 = main.ChessGame.Player()
@@ -118,17 +124,21 @@ def play(request): #cambiar get por post
                 board = shogi.play_moves(prevmovs)
 
                 if board is True:
+                    
                     gamesess.isFinished = True
                     gamesess.save()
+                    return JsonResponse({"board":shogi.board_state.tolist()})
                 
                 gamesess.moves = json.dumps(prevmovs)
                 gamesess.save()
         context = {"board":board.tolist()}
         return JsonResponse(context)
+
+
     elif request.method == "GET":
 
         context = {
         
         }
     
-        return render(request, 'main/home.html', context)
+        return render(request, 'main/lobby_game.html', context)

@@ -97,7 +97,7 @@ class Chess():
             m.append((pos1[0]+s,pos1[1]))
         if np.sign(self.board_state[pos1[0]+s][pos1[1]+s])!=np.sign(s) and self.board_state[pos1[0]+s][pos1[1]+s]!=0:
             m.append((pos1[0]+s,pos1[1]+s))
-        if np.sign(self.board_state[pos1[0]+s][pos1[1]-s])!=np.sign(s) and self.board_state[pos1[0]+s][pos1[1]+s]!=0:
+        if np.sign(self.board_state[pos1[0]+s][pos1[1]-s])!=np.sign(s) and self.board_state[pos1[0]+s][pos1[1]-s]!=0:
             m.append((pos1[0]+s,pos1[1]-s))
         print("MMMM",m)
         return m
@@ -214,12 +214,10 @@ class Chess():
             return 0
        
         #Check if piece belongs to player
-        if (p==self.p1) and (self.board_state[pos1[0],pos1[1]]<0):
+        if (p==self.p1) and (self.board_state[pos1[0],pos1[1]]<=0) or p==self.p2 and self.board_state[pos1[0],pos1[1]]>=0 :
             print("Not your piece")
             return 0
-        elif p==self.p2 and self.board_state[pos1[0],pos1[1]]>0:
-            print("Not your piece")
-            return 0
+        
 
            
         #Replaces the pos2 with the new piece, and pos1 with a blank space
@@ -237,7 +235,8 @@ class Chess():
                
                
             else:
-                print("IBREAKHERE")
+                
+                print("IBREAKHERE",pos1,pos2)
                 #print("Not a valid move!")
                 return 0
            
@@ -263,7 +262,7 @@ class Chess():
          
             if not self.move(current, pos1, pos2 ):
                 
-                break
+                return False
 
                    
             if 1 in self.p1.pieces or -1 in self.p2.pieces:

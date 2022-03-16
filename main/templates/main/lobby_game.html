@@ -8,10 +8,11 @@
         {% csrf_token %}
       <div>
         <input type="hidden" id="create" name="create" value="true">
-        <input type="text" id = "name" name="name" required size="10">
+        <input type="text" id = "name" name="name" placeholder="My Game!">
         <input type="checkbox" id = "isPrivate" name="isPrivate" checked="True">
         <label for="isPrivate">isPrivate</label><br>
-        <input id = "buttonsend" type="submit" >Create!</input>
+        <input id = "buttonsend" type="submit" value = "Create!">
+    
         </div>
     
       </form>
