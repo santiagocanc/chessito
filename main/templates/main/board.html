@@ -27,9 +27,12 @@
   <div class="ui two column very relaxed grid">
     <div class="column">
     <div align = "right" >
-  
+   <div>
       GAME ID:  <div id="gameidgetter">{{gameid}}</div>
-      
+      </div>
+      <div id="currentplayer">
+        Player
+      </div>
       </div>
  
       <div>
@@ -38,6 +41,8 @@
       <button type="button" id = "buttonsend" >move!</button>
       <button type="button" id = "buttonupdate" >update</button>
       </div>
+
+
 		
       <table style="text-align:center;border-spacing:0pt;font-family:'Arial Unicode MS'; border-collapse:collapse; border-color: black; border-style: solid; border-width: 0pt 0pt 0pt 0pt">
 <div align="left">
@@ -291,6 +296,9 @@
                     "id":gameid},
               success: function (response) {
                   // if not valid user, alert the user
+                  player_elem = document.getElementById("currentplayer")
+                  
+                  player_elem.textContent = "Plays-> "+response["current_player"]+" "+response["current_turn"]
                   draw(response["board"])
               },
               error: function (response) {
@@ -306,6 +314,9 @@
               url: "{% url 'main-play' %}",
               data: {"id":gameid},
               success: function (response) {
+                player_elem = document.getElementById("currentplayer")
+                  
+                  player_elem.textContent = "Plays-> "+response["current_player"]
                   // if not valid user, alert the user
                   draw(response["board"])
               },

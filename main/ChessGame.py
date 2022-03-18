@@ -79,7 +79,7 @@ class Chess():
                         6: lambda pos1, pos2,s : pos2 in self.checkBishop(pos1,s=s),#gets a diagonal with respect with pos 1.
                        
                       
-                        5: lambda pos1, pos2, s: pos2 in [(pos1[0]+2*s,pos1[1]+1),(pos1[0]+2*s,pos1[1]-1), (-pos1[0]+2*s,pos1[1]-1),(-pos1[0]+2*s,pos1[1]+1),        
+                        5: lambda pos1, pos2, s: pos2 in [(pos1[0]+2*s,pos1[1]+1),(pos1[0]-2*s,pos1[1]-1), (-pos1[0]+2*s,pos1[1]-1),(-pos1[0]-2*s,pos1[1]+1),        
                                                 (pos1[0]+1,pos1[1]+2*s),(pos1[0]-1,pos1[1]+2*s), (pos1[0]-1,-pos1[1]+2*s),(pos1[0]+1,-pos1[1]+2*s) ],
                         4: lambda pos1, pos2, s: pos2 in [(pos1[0]+ 1*s, pos1[1]+1*s) , (pos1[0]+1*s, pos1[1]-1*s) , (pos1[0]+1*s, pos1[1]+0*s) , (pos1[0]-1*s, pos1[1]-1*s) , (pos1[0]-1*s, pos1[1]+1*s) ],
                        
@@ -96,7 +96,7 @@ class Chess():
                         6: lambda pos1, pos2,s : self.checkBishop(pos1,s=s),#gets a diagonal with respect with pos 1.
                        
                       
-                        5: lambda pos1, pos2, s: [(pos1[0]+2*s,pos1[1]+1),(pos1[0]+2*s,pos1[1]-1), (-pos1[0]+2*s,pos1[1]-1),(-pos1[0]+2*s,pos1[1]+1),        
+                        5: lambda pos1, pos2, s: [(pos1[0]+2*s,pos1[1]+1),(pos1[0]-2*s,pos1[1]-1), (-pos1[0]+2*s,pos1[1]-1),(-pos1[0]-2*s,pos1[1]+1),        
                                                 (pos1[0]+1,pos1[1]+2*s),(pos1[0]-1,pos1[1]+2*s), (pos1[0]-1,-pos1[1]+2*s),(pos1[0]+1,-pos1[1]+2*s) ],
                         4: lambda pos1, pos2, s:  [(pos1[0]+ 1*s, pos1[1]+1*s) , (pos1[0]+1*s, pos1[1]-1*s) , (pos1[0]+1*s, pos1[1]+0*s) , (pos1[0]-1*s, pos1[1]-1*s) , (pos1[0]-1*s, pos1[1]+1*s) ],
                        
@@ -218,9 +218,10 @@ class Chess():
         x=1
         try:
             while (self.board_state[pos1[0]][pos1[1]+x] ==0 or np.sign(self.board_state[pos1[0]][pos1[1]+x]) ==-s) and x<self.BOARD_SIZE:
+                mov.append((pos1[0],pos1[1]+x))
                 if np.sign(self.board_state[pos1[0]][pos1[1]+x]) ==-s:
                     break
-                mov.append((pos1[0],pos1[1]+x))
+                
                 x+=1
         except:
             pass

@@ -85,16 +85,19 @@ def play(request): #cambiar get por post
             
             current_mov =  len(prevmovs)%2 #leer json
             flag = False
-
+            current_user_play = None
             if current_mov==0:
 
-
+                
                 if user == gamesess.player1:
                     flag = True
+                current_user_play = gamesess.player1.username
+               
             else:
                 if user == gamesess.player2:
                     flag = True
-            
+                current_user_play = gamesess.player2.username
+                
             if flag and request.GET.get("pos1") and request.GET.get("pos2"):
 
                 pos1,pos2 = [int(x) for x in request.GET.get("pos1")],[int(x) for x in request.GET.get("pos2")]
@@ -106,10 +109,18 @@ def play(request): #cambiar get por post
                 board = shogi.play_moves(prevmovs+[(pos1,pos2)])
                 if board is True:
                     gamesess.moves = json.dumps(prevmovs+[(pos1,pos2)])
+                    if  not gamesess.winner_player:
+                        
+                            
+                        gamesess.winner_player = gamesess.player1 if (len(prevmovs)+1)%2  else gamesess.player2
+                        if gamesess.player1 != gamesess.player2:
+                            gamesess.winner_player.win_ctd +=1
+                            gamesess.winner_player.save()
+                    
                     gamesess.isFinished = True
                     gamesess.save()
                     
-                    return JsonResponse({"board":shogi.board_state.tolist()})
+                    return JsonResponse({"board":shogi.board_state.tolist(),"current_player":gamesess.winner_player.username+" is the winner"})
                 
                 elif board is False:
                     board = shogi.play_moves(prevmovs)
@@ -130,12 +141,19 @@ def play(request): #cambiar get por post
                 if board is True:
                     
                     gamesess.isFinished = True
+                    if  not gamesess.winner_player:
+                        gamesess.winner_player = gamesess.player1 if len(prevmovs)%2  else gamesess.player2
+                   
+                   
+                        if gamesess.player1 != gamesess.player2:
+                            gamesess.winner_player.win_ctd +=1
+                            gamesess.winner_player.save()                   
                     gamesess.save()
-                    return JsonResponse({"board":shogi.board_state.tolist()})
+                    return JsonResponse({"board":shogi.board_state.tolist(),"current_player":gamesess.winner_player.username+" is the winner"})
                 
                 gamesess.moves = json.dumps(prevmovs)
                 gamesess.save()
-        context = {"board":board.tolist()}
+        context = {"board":board.tolist(), "current_player":current_user_play, "current_turn":current_mov}
         return JsonResponse(context)
 
 
