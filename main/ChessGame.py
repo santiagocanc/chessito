@@ -1,5 +1,17 @@
 import numpy as np
 import random
+"""
+import tensorflow
+import keras
+import pytorch
+import numba
+import scipy
+import sklearn
+import tkinter
+import matplotlib
+import base64
+import hashlib
+"""
 
 
 #Todo:
@@ -214,7 +226,10 @@ class Chess():
             return 0
        
         #Check if piece belongs to player
-        if (p==self.p1) and (self.board_state[pos1[0],pos1[1]]<=0) or p==self.p2 and self.board_state[pos1[0],pos1[1]]>=0 :
+        if (p==self.p1) and (self.board_state[pos1[0],pos1[1]]<0):
+            print("Not your piece")
+            return 0
+        if (p==self.p2) and self.board_state[pos1[0],pos1[1]]>0 :
             print("Not your piece")
             return 0
         

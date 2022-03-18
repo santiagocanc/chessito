@@ -313,9 +313,12 @@
               }
           })}
 
-    
-
-   
+    /*
+          (function my_func() {
+            get_board_latest()
+            setTimeout( my_func, 5000 );
+        })();*/
+        
   function get_board_temp(){
     t =document.getElementById("tempsend").value
     pos1 = t.split(" ")[0]+""
