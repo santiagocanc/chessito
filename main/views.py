@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Post
 from django.views.generic import TemplateView
 import main.ChessGame
 import json
+from django.urls import reverse
 from django.http import HttpResponse
 from Games.models import GameSession 
 from django.http import JsonResponse
@@ -62,6 +63,8 @@ def game(request):
             if gamesess:
                 gamesess.player2 = request.user
                 gamesess.save()
+                print(reverse('main-play')+f"?id={gamesess.gameid}")
+                return redirect(reverse('main-game')+f"?id={gamesess.gameid}")
         games = GameSession.objects.filter(isPrivate=False).filter(isFinished=False)
         
         context = {"games": games}

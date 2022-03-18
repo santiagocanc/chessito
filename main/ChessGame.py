@@ -88,7 +88,23 @@ class Chess():
                        3: lambda pos1, pos2, s: pos2 in self.checkTower(pos1, s), #Gets  a cross
                        
                        9: lambda pos1, pos2, s : pos2 in self.checkBishop(pos1, s) or pos2 in self.checkTower(pos1, s)                       }
-     
+        self.valid_moves = {0: lambda pos2, pos1, s: False,
+                       #IM SORRY I INVERTED POS1 AND POS2 HERE REMEMBER TO INVER THEM FOR #1 #2
+                       1: lambda pos2, pos1, s : [(pos2[0] + 1*s,pos2[1] + 1*s),(pos2[0] +1*s ,pos2[1] +0*s ),(pos2[0]+ 0*s ,pos2[1]+1*s ),(pos2[0]-1,pos2[1] -1*s),(pos2[0] -1*s ,pos2[1]+ 0*s ),(pos2[0]+ 0*s,pos2[1] -1*s),(pos2[0] -1*s ,pos2[1]+ 1*s),(pos2[0] -1*s,pos2[1] -1*s)],#FIX STARTING POS NAME
+                    
+                       
+                        6: lambda pos1, pos2,s : self.checkBishop(pos1,s=s),#gets a diagonal with respect with pos 1.
+                       
+                      
+                        5: lambda pos1, pos2, s: [(pos1[0]+2*s,pos1[1]+1),(pos1[0]+2*s,pos1[1]-1), (-pos1[0]+2*s,pos1[1]-1),(-pos1[0]+2*s,pos1[1]+1),        
+                                                (pos1[0]+1,pos1[1]+2*s),(pos1[0]-1,pos1[1]+2*s), (pos1[0]-1,-pos1[1]+2*s),(pos1[0]+1,-pos1[1]+2*s) ],
+                        4: lambda pos1, pos2, s:  [(pos1[0]+ 1*s, pos1[1]+1*s) , (pos1[0]+1*s, pos1[1]-1*s) , (pos1[0]+1*s, pos1[1]+0*s) , (pos1[0]-1*s, pos1[1]-1*s) , (pos1[0]-1*s, pos1[1]+1*s) ],
+                       
+                       8:  lambda pos1, pos2, s:  self.checkPawn(pos1,s),
+                       7: lambda pos1, pos2, s:  self.checkLance(pos1, s),
+                       3: lambda pos1, pos2, s: self.checkTower(pos1, s), #Gets  a cross
+                       
+                       9: lambda pos1, pos2, s :  self.checkBishop(pos1, s) + self.checkTower(pos1, s)                       }
        
         if board_state == None:
             #Default chess beggining 1state
@@ -103,15 +119,28 @@ class Chess():
            
         else:
             self.board_state = board_state
+
+
+
+    def pos_in_bounds(self,pos1):
+        if pos1[0]<0 or pos1[1]<0:
+            return False
+        try:
+            self.board_state[pos1[0]][pos1[1]]
+            return True
+        except:
+            return False
+        
     def checkPawn(self,pos1,s):
         m = []
         if not self.board_state[pos1[0]+s][pos1[1]]:
             m.append((pos1[0]+s,pos1[1]))
-        if np.sign(self.board_state[pos1[0]+s][pos1[1]+s])!=np.sign(s) and self.board_state[pos1[0]+s][pos1[1]+s]!=0:
+        
+        if  self.pos_in_bounds([pos1[0]+s,pos1[1]+s])   and np.sign(self.board_state[pos1[0]+s][pos1[1]+s])!=np.sign(s) and self.board_state[pos1[0]+s][pos1[1]+s]!=0:
             m.append((pos1[0]+s,pos1[1]+s))
-        if np.sign(self.board_state[pos1[0]+s][pos1[1]-s])!=np.sign(s) and self.board_state[pos1[0]+s][pos1[1]-s]!=0:
+        if  self.pos_in_bounds([pos1[0]+s,pos1[1]-s])   and np.sign(self.board_state[pos1[0]+s][pos1[1]-s])!=np.sign(s) and self.board_state[pos1[0]+s][pos1[1]-s]!=0:
             m.append((pos1[0]+s,pos1[1]-s))
-        print("MMMM",m)
+        print(m)
         return m
         
     def checkBishop(self,pos1,s):
@@ -251,7 +280,7 @@ class Chess():
                
             else:
                 
-                print("IBREAKHERE",pos1,pos2)
+                print("IBREAKHERE",pos1,pos2, self.valid_moves[np.abs(self.board_state[pos1[0],pos1[1]])](pos1,pos2,p.s))
                 #print("Not a valid move!")
                 return 0
            
